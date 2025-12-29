@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         TOMCAT_URL = 'http://localhost:8080'
-        APP_NAME   = 'hibernateapp'
+        APP_NAME   = 'hibernateAppAnnotations'
     }
 
     stages {
