@@ -30,8 +30,10 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(
                         credentialsId: 'tomcat-creds',
-                        usernameVariable: 'TOMCAT_USER',
-                        passwordVariable: 'TOMCAT_PASS'
+                        //usernameVariable: 'TOMCAT_USER',
+                        //passwordVariable: 'TOMCAT_PASS'
+                        usernameVariable: 'admin',
+                        passwordVariable: 'admin123'
                 )]) {
                     sh """
   curl -u $TOMCAT_USER:$TOMCAT_PASS \
