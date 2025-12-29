@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         TOMCAT_URL = 'http://localhost:8080'
-        APP_NAME   = 'myapp'
+        APP_NAME   = 'hibernateapp'
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
 
         stage('Build WAR') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
@@ -35,11 +35,11 @@ pipeline {
                         usernameVariable: 'admin',
                         passwordVariable: 'admin123'
                 )]) {
-                    sh """
-  curl -u $TOMCAT_USER:$TOMCAT_PASS \
-  -T target/*.war \
-  "$TOMCAT_URL/manager/text/deploy?path=/$APP_NAME&update=true"
-  """
+                    bat """
+                    curl -u %TOMCAT_USER%:%TOMCAT_PASS% ^
+                    -T target\\*.war ^
+                    "%TOMCAT_URL%/manager/text/deploy?path=/%APP_NAME%&update=true"
+                    """
                 }
             }
         }
@@ -47,10 +47,10 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment successful 🎉'
+            echo 'Deployment successful'
         }
         failure {
-            echo 'Deployment failed ❌'
+            echo 'Deployment failed'
         }
     }
 }
