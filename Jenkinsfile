@@ -29,17 +29,20 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                 withCredentials([usernamePassword(
-                        credentialsId: 'tomcat-creds',
-                        //usernameVariable: 'TOMCAT_USER',
-                        //passwordVariable: 'TOMCAT_PASS'
-                        usernameVariable: 'admin',
-                        passwordVariable: 'admin123'
+                    credentialsId: 'tomcat-creds',
+                    usernameVariable: 'TOMCAT_USER',
+                    passwordVariable: 'TOMCAT_PASS'
                 )]) {
-                    bat """
+                    bat '''
+                    echo Finding WAR file...
+                    for %%f in (target\\*.war) do set WAR_FILE=%%f
+
+                    echo WAR file is %WAR_FILE%
+
                     curl -u %TOMCAT_USER%:%TOMCAT_PASS% ^
-                    -T target\\*.war ^
-                    "%TOMCAT_URL%/manager/text/deploy?path=/%APP_NAME%&update=true"
-                    """
+                    -T %WAR_FILE% ^
+                    "http://localhost:8080/manager/text/deploy?path=/hibernateapp&update=true"
+                    '''
                 }
             }
         }
