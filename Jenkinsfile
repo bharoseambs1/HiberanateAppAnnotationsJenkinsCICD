@@ -41,7 +41,7 @@ pipeline {
 
                     curl -u %TOMCAT_USER%:%TOMCAT_PASS% ^
                     -T %WAR_FILE% ^
-                    "http://localhost:8080/manager/text/deploy?path=/hibernateapp&update=true"
+                    "http://localhost:8080/manager/text/deploy?path=/hibernateAppAnnotations&update=true"
                     '''
                 }
             }
