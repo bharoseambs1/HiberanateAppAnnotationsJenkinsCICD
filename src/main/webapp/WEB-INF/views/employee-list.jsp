@@ -3,7 +3,7 @@
 <html>
 <body>
 
-<h2>Employee List</h2>
+<h2>My Employee List</h2>
 
 <!-- Navigation -->
 <a href="${pageContext.request.contextPath}/department/add">
