@@ -3,7 +3,7 @@
 <html>
 <body>
 
-<h2>Employee List: Shraddha | Satish </h2>
+<h2>Employee List: Shraddha | Satish | Prajkta </h2>
 
 <!-- Navigation -->
 <a href="${pageContext.request.contextPath}/department/add">
